@@ -34,6 +34,7 @@ app.use(
 );
 
 app.use(passUserToView);
+console.log("u")
 
 
 
