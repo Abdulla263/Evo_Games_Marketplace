@@ -26,3 +26,6 @@ const userSchema = new mongoose.Schema ({
     type:Date
   }
 })
+
+const userModel = mongoose.model("User", userSchema);
+module.exports = userModel;
