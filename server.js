@@ -2,14 +2,12 @@ const dotenv = require('dotenv')
 dotenv.config();
 const express = require('express')
 const app = express();
-
-//Middleware
-
-
+const multer = require("multer")
 
 // Port Configuration
 const port = process.env.PORT ? process.env.PORT : "3000";
 const path = require('path');
+
 //Require Middleware
 const methodOverride = require('method-override');
 const morgan = require('morgan')
@@ -32,16 +30,33 @@ app.use(
     saveUninitialized: true
   })
 );
-
 app.use(passUserToView);
 console.log("u")
-
-
 
 // Root Route
 app.get('/', async (req, res) => {
   res.render("index.ejs");
 });
+//First category route
+app.get('/consoles', async (req, res) => {
+  res.render("console.ejs");
+})
+//Second category route
+app.get('/accessories', async (req,res) => {
+  res.render('accessories.ejs')
+})
+//Third category
+app.get('/games', async (req, res) => {
+  res.render('games.ejs')
+})
+// Require Routes
+const authRouter = require("./routes/auth");
+const listingRouter = require("./routes/listings");
+
+// Use Routes
+app.use("/auth", authRouter);
+app.use("/listings", isSignedIn, listingRouter);
+
 
 // Server - Listen on the configured port
 app.listen(port, () => {
