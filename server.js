@@ -66,6 +66,5 @@ app.use("/auth", authRouter);
 
 // Server - Listen on the configured port
 app.listen(port, () => {
-  console.log(`The Express App is Listening on Port ${port}`);
-});
-
+  console.log(`The Express App is Listening on Port ${port}`)
+})
