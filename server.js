@@ -2,70 +2,21 @@ const dotenv = require('dotenv')
 dotenv.config();
 const express = require('express')
 const app = express();
-const multer = require("multer")
-// Database Connection
-const mongoose = require("./config/db");
+
+//Middleware
+
 
 
 // Port Configuration
 const port = process.env.PORT ? process.env.PORT : "3000";
 const path = require('path');
-//Require Middleware
-const methodOverride = require('method-override');
-const morgan = require('morgan')
-const session = require('express-session')
-const passUserToView = require('./middleware/pass-user-to-view')
-const isSignedIn = require("./middleware/is-signed-in")
-
-//Use Middlewares
-app.use(express.urlencoded())
-app.use(methodOverride('_method'))
-app.use(morgan('dev'))
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static("uploads"))
-
-// Session Configuration
-app.use(
-  session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: true
-  })
-);
-
-app.use(passUserToView);
-
-
 
 // Root Route
 app.get('/', async (req, res) => {
   res.render("index.ejs");
 });
-// First category route
-app.get('/consoles', async (req,res) => {
-  res.redirect("console.ejs")
-})
-
-//Second category route
-app.get('/accessories', async (req, res) => {
-  res.redirect('accessories.ejs')
-})
-
-//Third category route
-app.get('/games', async (req, res) => {
-  res.redirect('games.ejs')
-})
-
-// Require Routes
-const authRouter = require("./routes/auth");
-// const listingRouter = require("./routes/listings");
-
-// Use Routes
-app.use("/auth", authRouter);
-// app.use("/listings", isSignedIn, listingRouter);
 
 // Server - Listen on the configured port
 app.listen(port, () => {
-  console.log(`The Express App is Listening on Port ${port}`);
-});
-
+  console.log(`The Express App is Listening on Port ${port}`)
+})
