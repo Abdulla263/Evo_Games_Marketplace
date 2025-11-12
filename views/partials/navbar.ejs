@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evo Games Marketplace</title>
+</head>
+<nav>
+  <% if(user) {%>
+    <div class="header">
+      <div class="container">
+        <div class="icon">
+        <img src="evologo.png" alt="">
+        </div>
+      </div>
+      <div class="links">
+        <a href="/users/profile">Profile</a>
+        <a href="/auth/sign-out">sign-out</a>
+      </div>
+    </div>
+  <% }else{ %>
+<div class="header">
+      <div class="container">
+        <div class="icon">
+        <img src="evologo.png" alt="">
+        </div>
+      </div>
+      <div class="links">
+        <a href="/users/profile">Profile</a>
+        <a href="/auth/sign-up">Sign Up</a>
+        <a href="/auth/sign-in">Sign In</a>
+      </div>
+    </div>
+  <% } %>
+</nav>
+</html>
