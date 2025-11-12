@@ -15,7 +15,7 @@ const userSchema = new mongoose.Schema ({
     required:true
   },
   pfp:{
-    data:buffer,
+    data:Buffer, // i change the buffer to Buffer
     contentType: String
   },
   bio:{

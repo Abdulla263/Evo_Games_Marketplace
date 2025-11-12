@@ -14,13 +14,10 @@
     "dotenv": "^17.2.3",
     "ejs": "^3.1.10",
     "express": "^5.1.0",
-<<<<<<< HEAD
     "express-session": "^1.18.2",
     "method-override": "^3.0.0",
     "mongoose": "^8.19.3",
     "morgan": "^1.10.1",
-=======
->>>>>>> 18ea069839dff431d4f39954323e4cc4349b9be8
     "multer": "^2.0.2"
   }
 }
