@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - Evo Games Marketplace</title>
+</head>
+<body>
+          <h1>🎮 Welcome Back</h1>
+          <p class="subtitle">Sign in to continue</p>
+          
+          <form action="/auth/sign-in" method="POST">
+            <label for="username">Username *</label>
+            <input 
+              type="text" 
+              name="username" 
+              id="username" 
+              placeholder="Enter your username"
+              required 
+            />
+            
+            <label for="password">Password *</label>
+            <input 
+              type="password" 
+              name="password" 
+              id="password" 
+              placeholder="Enter your password"
+              required 
+            />
+            
+            <button type="submit">Sign In</button>
+          </form>
+          
+          <p class="footer-text">
+            Don't have an account? <a href="/auth/sign-up">Sign Up</a>
+          </p>
+        </div>
+      </div>
+    </div>
+</body>
+</html>

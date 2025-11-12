@@ -15,7 +15,7 @@ const userSchema = new mongoose.Schema ({
     required:true
   },
   pfp:{
-    data:buffer,
+    data:Buffer, // i change the buffer to Buffer
     contentType: String
   },
   bio:{
@@ -27,5 +27,5 @@ const userSchema = new mongoose.Schema ({
   }
 })
 
-const userModel = mongoose.model("User", userSchema);
+const userModel = mongoose.model("userModel", userSchema);
 module.exports = userModel;
