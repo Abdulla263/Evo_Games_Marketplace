@@ -19,14 +19,8 @@ const itemSchema = new mongoose.Schema({
     enum: ["Console", "Game", "Accessory"],
   },
   images: {
-    data: {
-      type: Buffer,
-      required: true,
-    },
-    contentType: {
-      type: String,
-      required: true,
-    },
+    data: Buffer, // i change the buffer to Buffer
+    contentType: String,
   },
   condition: {
     type: String,
@@ -43,7 +37,7 @@ const itemSchema = new mongoose.Schema({
   },
   owner: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
+    ref: "userModel",
   },
 })
 

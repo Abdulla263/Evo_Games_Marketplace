@@ -55,6 +55,7 @@ app.get("/", async (req, res) => {
 // Require Routes
 const authRouter = require("./routes/auth")
 const itemsRouter = require("./routes/items")
+
 // const listingRouter = require("./routes/listings"); causing an error
 
 // Use Routes
