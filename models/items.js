@@ -19,9 +19,14 @@ const itemSchema = new mongoose.Schema({
     enum: ["Console", "Game", "Accessory"],
   },
   images: {
-    data: Buffer,
-    contentType: String,
-    required: true,
+    data: {
+      type: Buffer,
+      required: true,
+    },
+    contentType: {
+      type: String,
+      required: true,
+    },
   },
   condition: {
     type: String,
@@ -41,5 +46,6 @@ const itemSchema = new mongoose.Schema({
     ref: "User",
   },
 })
+
 const itemsModel = mongoose.model("itemsModel", itemSchema)
 module.exports = itemsModel
