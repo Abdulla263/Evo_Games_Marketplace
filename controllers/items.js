@@ -1,12 +1,12 @@
 const Item = require("../models/items")
 
-//Show items
+// Show items
 exports.items_index_get = async (req, res) => {
   const items = await Item.find().populate("owner")
   res.render("listings/index.ejs", { items })
 }
 
-//Show create form
+// Show create form
 exports.item_create_get = async (req, res) => {
   res.render("items/new.ejs")
 }
@@ -14,9 +14,16 @@ exports.item_create_get = async (req, res) => {
 // Create item
 exports.items_create_post = async (req, res) => {
   req.body.owner = req.session.user._id
-  if (req.file) req.body.image = req.file.filename
+
+  if (!req.file) {
+    return res.send("Error: Item image is required!")
+  }
+
+  req.body.images = {
+    data: req.file.buffer,
+    contentType: req.file.mimetype,
+  }
+
   await Item.create(req.body)
   res.redirect("/items")
 }
-
-
