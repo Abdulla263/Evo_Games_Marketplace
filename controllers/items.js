@@ -3,7 +3,7 @@ const Item = require("../models/items")
 // Show items
 exports.items_index_get = async (req, res) => {
   const items = await Item.find().populate("owner")
-  res.render("listings/index.ejs", { items })
+  res.render("items/index.ejs", { items })
 }
 
 // Show create form
@@ -26,4 +26,12 @@ exports.items_create_post = async (req, res) => {
 
   await Item.create(req.body)
   res.redirect("/items")
+}
+
+// Show single item
+exports.items_show_get = async (req, res) => {
+  const item = await Item.findById(req.params.itemId).populate("owner")
+  res.render("items/show.ejs", {
+    item,
+  })
 }

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= item.title %> - Evo Games</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <%- include('../partials/navbar.ejs') %>
+
+    <div class="container">
+      <div class="item-detail">
+        <div>
+          <% if (item.image) { %>
+          <img
+            src="/uploads/<%= item.image %>"
+            alt="<%= item.title %>"
+            class="item-image"
+            style="height: 400px"
+          />
+          <% } else { %>
+          <div class="item-image" style="height: 400px; font-size: 5rem">
+            🎮
+          </div>
+          <% } %>
+        </div>
+
+        <div class="item-info">
+          <h1><%= item.title %></h1>
+          <p class="price">$<%= item.price %></p>
+
+          <div class="badges">
+            <span class="badge badge-category"><%= item.category %></span>
+            <span class="badge badge-condition"><%= item.condition %></span>
+            <span class="badge badge-platform"><%= item.platform %></span>
+          </div>
+
+          <% if (item.description) { %>
+          <div class="description">
+            <h3>Description</h3>
+            <p><%= item.description %></p>
+          </div>
+          <% } %>
+
+          <div class="seller-info">
+            <h3>Seller Information</h3>
+            <p>👤 <%= item.owner.username %></p>
+            <% if (item.owner.phoneNumber) { %>
+            <p>📞 <%= item.owner.phoneNumber %></p>
+            <% } %>
+          </div>
+
+          <% if (user && item.owner._id.equals(user._id)) { %>
+          <div class="actions">
+            <a href="/items/<%= item._id %>/edit" class="btn btn-primary"
+              >Edit Item</a
+            >
+            <form
+              action="/items/<%= item._id %>?_method=DELETE"
+              method="POST"
+              style="display: inline"
+            >
+              <button
+                type="submit"
+                class="btn btn-danger"
+                onclick="return confirm('Delete this item?')"
+              >
+                Delete
+              </button>
+            </form>
+          </div>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

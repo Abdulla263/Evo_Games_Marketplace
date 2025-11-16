@@ -1,9 +1,10 @@
-
+<link rel="stylesheet" href="/css/styles.css" />
 <body>
           <h1>🎮 Welcome Back</h1>
-          <p class="subtitle">Sign in to continue</p>
 
-          <form action="/auth/sign-in" method="POST">
+
+          <form class="form-container" action="/auth/sign-in" method="POST">
+                      <p class="subtitle">Sign in to continue</p>
             <label for="username">Username *</label>
             <input
               type="text"
@@ -23,10 +24,11 @@
             />
 
             <button type="submit">Sign In</button>
+                      <p class="footer-text">
+            Don't have an account? <a href="/auth/sign-up">Sign Up</a>
           </form>
 
-          <p class="footer-text">
-            Don't have an account? <a href="/auth/sign-up">Sign Up</a>
+
           </p>
         </div>
       </div>
