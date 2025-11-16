@@ -1,0 +1,65 @@
+/* ========================================
+   GLOBAL STYLES
+   ======================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  color: white;
+  min-height: 100vh;
+}
+
+/* ========================================
+   NAVBAR
+   ======================================== */
+nav {
+  background-color: #1a1a2e;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.nav-brand {
+  color: #00d4ff;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.nav-brand:hover {
+  color: #00b8d4;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.nav-links a:hover {
+  background-color: #16213e;
+}
+
+.nav-links .btn-primary {
+  padding: 0.5rem 1rem;
+}
+
+.user-info {
+  color: #00d4ff;
+  margin-right: 1rem;
+}
