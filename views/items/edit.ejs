@@ -1,0 +1,51 @@
+<!-- creating an edit page for every listing -->
+<%- include('../partials/navbar') %>
+<link rel="stylesheet" href="/css/styles.css" />
+<h1>Edit a listing</h1>
+<form action="/items/<%= item._id %>?_method=PUT" method="post" enctype="multipart/form-data">
+    <h1>Edit an item details</h1>
+    <label for="Title">Title:</label>
+    <input type="text"
+        name="title"
+        id="title"
+        value="<%= item.title %>"
+        required />
+
+    <label for="description">Description:</label>
+    <textarea name="description" id="description"><%= item.description %></textarea>
+    <label for="price">Price (BHD):</label>
+    <input
+        type="number"
+        name="price"
+        id="price"
+        min="0"
+        step="0.01"
+        value="<%= item.price %>"
+        required />
+
+    <label for="category">Category:</label>
+    <select name="category" id="category" required>
+        <option value="">Select a new category</option>
+        <option value="Console" <%= item.category === 'Console' ? 'selected' : '' %>>Console</option>
+        <option value="Game" <%= item.category === 'Game' ? 'selected' : '' %>>Game</option>
+        <option value="Accessory" <%= item.category === 'Accessory' ? 'selected' : '' %>>Accessory</option>
+    </select>
+    <label for="condition">Condition</label>
+    <select name="condition" id="condition">
+        <option value="">Choose a condition</option>
+        <option value="New" <%= item.condition === "New" ? 'selected' : '' %>>New </option>
+        <option value="Used" <%= item.condition === "Used" ? 'selected' : '' %>>Used </option>
+    </select>
+    <label for="platform">platform</label>
+    <select name="platform" id="platform">
+        <option value="">Choose a platform</option>
+        <option value="playstation" <%= item.platform === "playstation" ? 'selected' : '' %>>playstation </option>
+        <option value="Xbox" <%= item.platform === "Xbox" ? 'selected' : '' %>>Xbox </option>
+        <option value="Nintendo" <%= item.platform === "Nintendo" ? 'selected' : '' %>>Nintendo </option>
+        <option value="PC" <%= item.platform === "PC" ? 'selected' : '' %>>PC </option>
+        <option value="Other" <%= item.platform === "Other" ? 'selected' : '' %>>Other </option>
+    </select>
+    <label for="images">Upload an image(optional)</label>
+    <input type="file" name="images" id="images" accept="image/*" required />
+    <button type="submit"> Update listing</button>
+</form>

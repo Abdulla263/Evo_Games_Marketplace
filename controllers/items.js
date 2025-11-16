@@ -10,6 +10,26 @@ exports.items_index_get = async (req, res) => {
 exports.item_create_get = async (req, res) => {
   res.render("items/new.ejs")
 }
+// Show edit form
+exports.item_edit_get = async (req, res) => {
+    const currentitem = await Item.findById(req.params.itemId);
+    res.render('items/edit.ejs', {
+      item: currentitem,
+    });
+};
+
+//using PUT to update the form in the database
+exports.item_update_put = async (req, res) => {
+  const currentitem = await
+  Item.findById(req.params.itemId)
+  if (currentitem.owner.equals(req.session.user._id)) {
+    await currentitem.updateOne (req.body);
+    res.redirect('/items')
+  } else {
+    res.send("permission denied")
+  }
+}
+
 
 // Create item
 exports.items_create_post = async (req, res) => {
