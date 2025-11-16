@@ -1,0 +1,40 @@
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<link rel="stylesheet" href="/stylesheets/style.css" />
+ <body>
+
+  <div class="new-container">
+    <div class="new-form-container">
+      <h1>Edit Profile</h1>
+      <form action="/users/<%= user._id %>?_method=PUT" method="POST">
+        <label for="Username">Username:</label>
+        <input
+          type="text"
+          name="Username"
+          id="Username"
+          value="<%= user.username %>"
+        />
+        <form action="/users/<%= user._email %>?_method=PUT" method="POST">
+        <label for="Username">Email:</label>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          value="<%= user.email %>"
+        />
+        <form action="/users/<%= user._pfp %>?_method=PUT" method="POST">
+        <label for="pfp">Profile Picture:</label>
+        <input
+          type="image"
+          name="pfp"
+          id="pfp"
+          value="<%= user.pfp %>"
+        />
+
+
+        <button type="submit">Edit Profile</button>
+      </form>
+    </div>
+  </div>
+</body>
+
