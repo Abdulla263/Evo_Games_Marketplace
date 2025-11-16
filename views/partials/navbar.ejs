@@ -1,35 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Evo Games Marketplace</title>
-  </head>
-  <nav>
-    <% if(user) {%>
-    <div class="header">
-      <div class="container">
-        <div class="icon">
-          <img src="evologo.png" alt="" />
-        </div>
-      </div>
-      <div class="links">
-        <a href="/users/Profile">Profile</a>
-        <a href="/auth/sign-out">sign-out</a>
-      </div>
-    </div>
-    <% }else{ %>
-    <div class="header">
-      <div class="container">
-        <div class="icon">
-          <img src="evologo.png" alt="" />
-        </div>
-      </div>
-      <div class="links">
-        <a href="/auth/sign-up">Sign Up</a>
-        <a href="/auth/sign-in">Sign In</a>
-      </div>
-    </div>
+<nav>
+  <a href="/" class="nav-brand">
+    <img
+      src="/evowhite.png"
+      alt="Evo Games"
+      style="height: 40px; vertical-align: middle"
+    />
+    Evo Games
+  </a>
+
+  <div class="nav-links">
+    <a href="/items">Browse All</a>
+    <a href="/items/category/console">Consoles</a>
+    <a href="/items/category/game">Games</a>
+    <a href="/items/category/accessory">Accessories</a>
+
+    <% if (user) { %>
+    <span class="user-info">👤 <%= user.username %></span>
+    <a href="/items/new" class="btn btn-primary">Sell Item</a>
+    <a href="/auth/sign-out">Sign Out</a>
+    <% } else { %>
+    <a href="/auth/sign-in">Sign In</a>
+    <a href="/auth/sign-up" class="btn btn-primary">Sign Up</a>
     <% } %>
-  </nav>
-</html>
+  </div>
+</nav>

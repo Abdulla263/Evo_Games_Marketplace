@@ -60,10 +60,8 @@ const itemsRouter = require("./routes/items")
 
 // Use Routes
 app.use("/auth", authRouter)
-// app.use("/listings", isSignedIn, listingRouter); cuasing an error
-const userRoutes = require('./routes/users');
-app.use('/users', userRoutes);
-
+const userRoutes = require("./routes/users")
+app.use("/users", userRoutes)
 app.use("/items", isSignedIn, itemsRouter)
 
 // Server - Listen on the configured port
