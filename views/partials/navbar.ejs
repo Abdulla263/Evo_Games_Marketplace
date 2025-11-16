@@ -3,34 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="stylesheet/style.css" type="text/css"/>
+
     <title>Evo Games Marketplace</title>
 </head>
 <nav>
   <% if(user) {%>
     <div class="header">
-      <div class="container">
-        <div class="icon">
-        <img src="evologo.png" alt="">
-        </div>
+        <div class="container">
+
       </div>
       <div class="links">
         <a href="/users/profile">Profile</a>
         <a href="/auth/sign-out">sign-out</a>
+        <a href="../items/new.ejs">Add Item</a>
+      </div>
+      <div class="categories">
+        <a href="" >Games</a>
+        <a href="">accessories</a>
+        <a href="">consoles</a>
+        <a href="">About us</a>
       </div>
     </div>
   <% }else{ %>
 <div class="header">
       <div class="container">
-        <div class="icon">
-        <img src="evologo.png" alt="">
-        </div>
       </div>
       <div class="links">
-        <a href="/users/profile">Profile</a>
         <a href="/auth/sign-up">Sign Up</a>
         <a href="/auth/sign-in">Sign In</a>
+      </div>
+      <div class="categories">
+        <a href="" >Games</a>
+        <a href="">accessories</a>
+        <a href="">consoles</a>
+        <a href="">About us</a>
       </div>
     </div>
   <% } %>
 </nav>
+<body>
+   <img src="/evologo.png" alt="evo" class="icon">
+</body>
 </html>
