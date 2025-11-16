@@ -1,5 +1,6 @@
 const userModel = require("../models/user")
 const bcrypt = require("bcrypt")
+const upload = require('../middleware/multer');
 
 exports.auth_signup_get = async (req, res) => {
   res.render("auth/sign-up.ejs")
@@ -13,8 +14,23 @@ exports.auth_signup_post = async (req, res) => {
     return res.send("Password and confirm Password must match!")
   }
   if (req.file) {
-    req.body.pfp = req.file.filename
-  }
+  // user uploaded a pfp
+  req.body.pfp = {
+    data: req.file.buffer,
+    contentType: req.file.mimetype
+  };
+} else {
+//user did not upload a pfp therefore default.jpg will be used
+  const fs = require('fs');
+  const defaultImage = fs.readFileSync('./uploads/default.jpg');
+
+  req.body.pfp = {
+    data: defaultImage,
+    contentType: 'image/jpeg'
+  };
+}
+
+
   //registring the user by hashing the pass
   const hashedPassword = await bcrypt.hash(req.body.password, 5)
   req.body.password = hashedPassword
