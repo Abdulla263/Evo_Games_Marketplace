@@ -1,6 +1,15 @@
-Welcome, <%=user.username%>
-<%=user.email%>
-<% if (user.pfp && user.pfp.data) { %>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/styles.css" />
+
+
+  </head>
+  <body>
+    <%- include('../partials/navbar.ejs') %>
+        <% if (user.pfp && user.pfp.data) { %>
   <img src="data:<%= user.pfp.contentType %>;base64,<%= user.pfp.data.toString('base64') %>"
        alt="Profile Picture"
        style="width:150px;height:150px;border-radius:50%;">
@@ -8,7 +17,10 @@ Welcome, <%=user.username%>
   <img src="/uploads/default.jpg"
        alt="Profile Picture"
        style="width:150px;height:150px;border-radius:50%;">
-<% } %>
+<% } %> <br>
+Welcome, <%=user.username%> <br>
+Your Email is <%=user.email%>
 
 <a href="/users/Profile/Edit">Edit Profile</a>
+</body>
 

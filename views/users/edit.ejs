@@ -1,40 +1,44 @@
- <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <%- include('../partials/navbar.ejs') %>
 
-<link rel="stylesheet" href="/stylesheets/style.css" />
- <body>
+    <div class="new-container">
+      <div class="new-form-container">
+        <h1>Edit Profile</h1>
 
-  <div class="new-container">
-    <div class="new-form-container">
-      <h1>Edit Profile</h1>
-      <form action="/users/<%= user._id %>?_method=PUT" method="POST">
-        <label for="Username">Username:</label>
-        <input
-          type="text"
-          name="Username"
-          id="Username"
-          value="<%= user.username %>"
-        />
-        <form action="/users/<%= user._email %>?_method=PUT" method="POST">
-        <label for="Username">Email:</label>
-        <input
-          type="email"
-          name="email"
-          id="email"
-          value="<%= user.email %>"
-        />
-        <form action="/users/<%= user._pfp %>?_method=PUT" method="POST">
-        <label for="pfp">Profile Picture:</label>
-        <input
-          type="image"
-          name="pfp"
-          id="pfp"
-          value="<%= user.pfp %>"
-        />
+        <form action="/users/<%= user._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+          <label for="username">Username:</label>
+          <input type="text" name="username" id="username" value="<%= user.username %>" />
 
+          <label for="email">Email:</label>
+          <input type="email" name="email" id="email" value="<%= user.email %>" />
 
-        <button type="submit">Edit Profile</button>
-      </form>
+          <label for="pfp">Profile Picture:</label>
+          <input type="file" name="pfp" id="pfp" accept="image/*" />
+
+          <% if (user.pfp && user.pfp.data) { %>
+            <img
+              src="data:<%= user.pfp.contentType %>;base64,<%= user.pfp.data.toString('base64') %>"
+              alt="Profile Picture"
+              style="width:120px; height:120px; border-radius:50%; object-fit:cover; margin-top:10px;"
+            />
+          <% } else { %>
+            <img
+              src="/uploads/default.jpg"
+              alt="Default Profile Picture"
+              style="width:120px; height:120px; border-radius:50%; object-fit:cover; margin-top:10px;"
+            />
+          <% } %>
+
+          <button type="submit">Edit Profile</button>
+        </form>
+      </div>
     </div>
-  </div>
-</body>
-
+  </body>
+</html>

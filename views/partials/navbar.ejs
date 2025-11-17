@@ -15,7 +15,7 @@
     <a href="/items/category/accessory">Accessories</a>
 
     <% if (user) { %>
-    <span class="user-info">👤 <%= user.username %></span>
+    <a href="/users/Profile" class="user-info">👤 <%= user.username %></a>
     <a href="/items/new" class="btn btn-primary">Sell Item</a>
     <a href="/auth/sign-out">Sign Out</a>
     <% } else { %>
