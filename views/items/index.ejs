@@ -20,9 +20,9 @@
       <div class="items-grid">
         <% items.forEach(item => { %>
         <a href="/items/<%= item._id %>" class="item-card">
-          <% if (item.image) { %>
+          <% if (item.images && item.images.data) { %>
           <img
-            src="/uploads/<%= item.image %>"
+            src="data:<%= item.images.contentType %>;base64,<%= item.images.data.toString('base64') %>"
             alt="<%= item.title %>"
             class="item-image"
           />

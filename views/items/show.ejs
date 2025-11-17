@@ -12,9 +12,9 @@
     <div class="container">
       <div class="item-detail">
         <div>
-          <% if (item.image) { %>
+          <% if (item.images && item.images.data) { %>
           <img
-            src="/uploads/<%= item.image %>"
+            src="data:<%= item.images.contentType %>;base64,<%= item.images.data.toString('base64') %>"
             alt="<%= item.title %>"
             class="item-image"
             style="height: 400px"
@@ -28,7 +28,7 @@
 
         <div class="item-info">
           <h1><%= item.title %></h1>
-          <p class="price">$<%= item.price %></p>
+          <p class="price">BHD<%= item.price %></p>
 
           <div class="badges">
             <span class="badge badge-category"><%= item.category %></span>
@@ -36,10 +36,10 @@
             <span class="badge badge-platform"><%= item.platform %></span>
           </div>
 
-          <% if (item.description) { %>
+          <% if (item.desc) { %>
           <div class="description">
             <h3>Description</h3>
-            <p><%= item.description %></p>
+            <p><%= item.desc%></p>
           </div>
           <% } %>
 
