@@ -8,6 +8,9 @@ router.get("/new", itemsCtrl.item_create_get)
 router.get("/:itemId", itemsCtrl.items_show_get)
 router.post("/", upload.single("images"), itemsCtrl.items_create_post)
 router.get("/:itemId/edit", itemsCtrl.item_edit_get)
-router.put("/:itemId", itemsCtrl.item_update_put)
+router.put("/:itemId",upload.single("images"), itemsCtrl.item_update_put)
+
+router.delete("/:itemId", itemsCtrl.item_delete_delete);
+
 
 module.exports = router
