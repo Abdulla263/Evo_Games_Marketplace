@@ -37,6 +37,7 @@ exports.auth_signup_post = async (req, res) => {
 
   // create the user
   const user = await userModel.create(req.body)
+  const createTime = Date.now()
   res.redirect('/auth/sign-in')
 
 }
@@ -62,7 +63,7 @@ exports.auth_signin_post = async (req, res) => {
 }
 
 
-// sign out 
+// sign out
 
 exports.auth_signout_get = async (req, res) => {
   req.session.destroy()

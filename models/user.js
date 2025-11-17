@@ -24,6 +24,9 @@ const userSchema = new mongoose.Schema({
   createTime: {
     type: Date,
   },
+  phoneNumber:{
+    type: Number
+  }
 })
 
 const userModel = mongoose.model("userModel", userSchema)
