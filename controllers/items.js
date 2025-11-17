@@ -6,6 +6,17 @@ exports.items_index_get = async (req, res) => {
   res.render("items/index.ejs", { items })
 }
 
+//Show categories
+exports.items_category_get = async (req, res) => {
+  const category = req.params.category
+  const formattedCategory =
+    category.charAt(0).toUpperCase() + category.slice(1).toLowerCase()
+  const items = await Item.find({ category: formattedCategory }).populate(
+    "owner"
+  )
+  res.render("items/category.ejs", { items, category: formattedCategory })
+}
+
 // Show create form
 exports.item_create_get = async (req, res) => {
   res.render("items/new.ejs")

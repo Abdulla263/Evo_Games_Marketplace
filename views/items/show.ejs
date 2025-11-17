@@ -45,9 +45,37 @@
 
           <div class="seller-info">
             <h3>Seller Information</h3>
-            <p>👤 <%= item.owner.username %></p>
-            <% if (item.owner.phoneNumber) { %>
-            <p>📞 <%= item.owner.phoneNumber %></p>
+
+            <% if (user) { %>
+
+            <p>Username: <%= item.owner.username %></p>
+            <p>Email: <%= item.owner.email %></p>
+            <% } else { %>
+
+            <p>Username: <%= item.owner.username %></p>
+            <p
+              style="
+                color: #f39c12;
+                background: #fff3cd;
+                padding: 10px;
+                border-radius: 5px;
+                margin-top: 10px;
+              "
+            >
+              🔒 <strong>Sign in to view contact details</strong><br />
+              <a
+                href="/auth/sign-in"
+                style="color: #0066cc; text-decoration: underline"
+                >Sign In</a
+              >
+              or
+              <a
+                href="/auth/sign-up"
+                style="color: #0066cc; text-decoration: underline"
+                >Sign Up</a
+              >
+              to contact the seller
+            </p>
             <% } %>
           </div>
 
