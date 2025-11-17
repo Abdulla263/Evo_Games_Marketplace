@@ -280,6 +280,70 @@ form small {
   font-size: 0.85rem;
 }
 
+
+/* ========================================
+   ITEM ACTIONS (Edit & Delete Buttons)
+   ======================================== */
+.actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 2px solid #1a1a2e;
+}
+
+.actions .btn {
+  flex: 1;
+  padding: 0.9rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.actions .btn-primary {
+  background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+  color: #0f3460;
+}
+
+.actions .btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(0, 212, 255, 0.4);
+}
+
+.actions .btn-danger {
+  background: linear-gradient(135deg, #ff4444 0%, #cc0000 100%);
+  color: white;
+}
+
+.actions .btn-danger:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(255, 68, 68, 0.4);
+}
+
+.actions form {
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
+  max-width: none;
+}
+
+.actions form button {
+  width: 100%;
+  margin: 0;
+
+
+
+
+
 /* Responsive */
 @media (max-width: 768px) {
   form {
