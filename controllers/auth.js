@@ -60,3 +60,11 @@ exports.auth_signin_post = async (req, res) => {
   }
   res.redirect("/")
 }
+
+
+// sign out 
+
+exports.auth_signout_get = async (req, res) => {
+  req.session.destroy()
+  res.redirect("/")
+}
