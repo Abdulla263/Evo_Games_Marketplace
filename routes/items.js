@@ -16,5 +16,11 @@ router.post(
 )
 router.get("/:itemId/edit", isSignedIn, itemsCtrl.item_edit_get)
 router.put("/:itemId", isSignedIn, itemsCtrl.item_update_put)
+router.post("/", upload.single("images"), itemsCtrl.items_create_post)
+router.get("/:itemId/edit", itemsCtrl.item_edit_get)
+router.put("/:itemId",upload.single("images"), itemsCtrl.item_update_put)
+
+router.delete("/:itemId", itemsCtrl.item_delete_delete);
+
 
 module.exports = router
