@@ -3,12 +3,12 @@ const mongoose = require('mongoose');
 const ReviewSchema = new mongoose.Schema({
   item: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Item',
+    ref: 'itemsModel',
     required: true
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
+    ref: 'userModel',
     required: true
   },
   voteType: {
@@ -17,12 +17,11 @@ const ReviewSchema = new mongoose.Schema({
     required: true
   }
 }, {
-  timestamps: true // make timestamp outsdie the schema, MOngoDB will handle the updates , crates at at it as automatic
-  //https://www.geeksforgeeks.org/mongodb/mongoose-timestamps/
+  timestamps: true
 });
 
-priceReviewSchema.index({ item: 1, user: 1 }, { unique: true });
-// this to make the users make ONLY one review to specific ONE item => to avoid duplicate reviews
+// Ensure one review per user per item
+ReviewSchema.index({ item: 1, user: 1 }, { unique: true });
 
 const ReviewModel = mongoose.model('ReviewModel', ReviewSchema);
-module.exports = ReviewModel
+module.exports = ReviewModel;
