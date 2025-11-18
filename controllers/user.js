@@ -1,5 +1,5 @@
 const User = require('../models/user');
-
+const Review = require("../models/reviews")
 // Update user profile
 exports.user_update_put = async (req, res) => {
   const currentUser = await User.findById(req.session.user._id)
@@ -35,3 +35,25 @@ exports.upload_pfp = async (req, res) => {
   await currentUser.save();
   res.redirect("/users/profile");
 };
+
+exports.user_profile_get = async (req, res) => {
+  const user = await User.findById(req.session.user._id);
+  const userItems = await Item.find({ owner: req.session.user._id });
+  
+  const itemsWithStats = [];
+  
+  for (const currentItem of userItems) {
+    const itemReviews = await Review.find({ item: currentItem._id });
+    
+    itemsWithStats.push({
+      item: currentItem,
+      stats: {
+        totalReviews: itemReviews.length,
+        fairVotes: itemReviews.filter(review => review.voteType === 'fair').length,
+        highVotes: itemReviews.filter(review => review.voteType === 'high').length
+      }
+    });
+  }
+  
+  res.render("users/show.ejs", { user, itemsWithStats });
+}
