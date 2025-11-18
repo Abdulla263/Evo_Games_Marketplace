@@ -23,7 +23,7 @@ router.get("/profile/edit", isSignedIn, async (req, res) => {
   res.render("users/edit.ejs", { user })
 })
 
-// Update profile
+// Update profile 
 router.put("/:id", isSignedIn, upload.single("pfp"), userCtrl.user_update_put)
 
 module.exports = router
