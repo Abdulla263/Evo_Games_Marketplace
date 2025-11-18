@@ -40,29 +40,16 @@ console.log("u")
 app.get("/", async (req, res) => {
   res.render("index.ejs")
 })
-// //First category route
-// app.get('/consoles', async (req, res) => {
-//   res.render("console.ejs");
-// })
-// //Second category route
-// app.get('/accessories', async (req,res) => {
-//   res.render('accessories.ejs')
-// })
-// //Third category
-// app.get('/games', async (req, res) => {
-//   res.render('games.ejs')
-// })
+
 // Require Routes
 const authRouter = require("./routes/auth")
 const itemsRouter = require("./routes/items")
-
-// const listingRouter = require("./routes/listings"); causing an error
 
 // Use Routes
 app.use("/auth", authRouter)
 const userRoutes = require("./routes/users")
 app.use("/users", userRoutes)
-app.use("/items", isSignedIn, itemsRouter)
+app.use("/items", itemsRouter)
 
 // Server - Listen on the configured port
 app.listen(port, () => {

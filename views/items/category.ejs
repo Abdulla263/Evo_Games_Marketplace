@@ -3,18 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Browse Items - Evo Games</title>
+    <title><%= category %> - Evo Games</title>
     <link rel="stylesheet" href="/css/styles.css" />
   </head>
   <body>
     <%- include('../partials/navbar.ejs') %>
 
     <div class="container">
-      <h1>🎮 All Items</h1>
+      <h1>🎮 <%= category %></h1>
 
       <% if (items.length === 0) { %>
       <div class="no-items">
-        <p>No items listed yet. Be the first to sell!</p>
+        <p>No <%= category.toLowerCase() %> items listed yet.</p>
+        <a href="/items/new" class="btn btn-primary">List an Item</a>
       </div>
       <% } else { %>
       <div class="items-grid">
@@ -32,7 +33,7 @@
 
           <div class="item-info">
             <h3 class="item-title"><%= item.title %></h3>
-            <p class="item-price">BHD<%= item.price %></p>
+            <p class="item-price">BHD <%= item.price %></p>
             <p class="item-details">Seller: <%= item.owner.username %></p>
 
             <div>

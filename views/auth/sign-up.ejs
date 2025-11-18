@@ -7,10 +7,12 @@
     <title>Sign Up - Evo Games Marketplace</title>
   </head>
   <body>
-    <h1>Create Account</h1>
+    <%- include('../partials/navbar') %>
 
-    <form action="/auth/sign-up" method="POST" enctype="multipart/form-data">
-      <div>
+    <div class="container">
+      <h1>🎮 Create Account</h1>
+
+      <form action="/auth/sign-up" method="POST" enctype="multipart/form-data">
         <label for="username">Username *</label>
         <input
           type="text"
@@ -19,9 +21,7 @@
           placeholder="Enter your username"
           required
         />
-      </div>
 
-      <div>
         <label for="email">Email *</label>
         <input
           type="email"
@@ -30,14 +30,16 @@
           placeholder="your.email@example.com"
           required
         />
-      </div>
 
-      <div>
         <label for="password">Password *</label>
-        <input type="password" id="password" name="password" required />
-      </div>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Enter your password"
+          required
+        />
 
-      <div>
         <label for="confirmPassword">Confirm Password *</label>
         <input
           type="password"
@@ -46,9 +48,7 @@
           placeholder="Re-enter your password"
           required
         />
-      </div>
 
-      <div>
         <label for="bio">Bio (Optional)</label>
         <textarea
           id="bio"
@@ -58,17 +58,15 @@
           maxlength="500"
         ></textarea>
         <small>Optional: Share your gaming interests or favorite games</small>
-      </div>
 
-      <div>
         <label for="pfp">Profile Picture (Optional)</label>
         <input type="file" id="pfp" name="pfp" accept="image/*" />
-      </div>
 
-      <button type="submit">Sign Up</button>
-    </form>
-    <p class="footer-text">
-      Already have an account? <a href="/auth/sign-in">Sign In</a>
-    </p>
+        <button type="submit">Sign Up</button>
+        <p class="footer-text">
+          Already have an account? <a href="/auth/sign-in">Sign In</a>
+        </p>
+      </form>
+    </div>
   </body>
 </html>

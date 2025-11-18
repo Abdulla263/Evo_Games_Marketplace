@@ -6,6 +6,17 @@ exports.items_index_get = async (req, res) => {
   res.render("items/index.ejs", { items })
 }
 
+//Show categories
+exports.items_category_get = async (req, res) => {
+  const category = req.params.category
+  const formattedCategory =
+    category.charAt(0).toUpperCase() + category.slice(1).toLowerCase()
+  const items = await Item.find({ category: formattedCategory }).populate(
+    "owner"
+  )
+  res.render("items/category.ejs", { items, category: formattedCategory })
+}
+
 // Show create form
 exports.item_create_get = async (req, res) => {
   res.render("items/new.ejs")
@@ -22,6 +33,17 @@ exports.item_edit_get = async (req, res) => {
 exports.item_update_put = async (req, res) => {
   const currentitem = await Item.findById(req.params.itemId)
   if (currentitem.owner.equals(req.session.user._id)) {
+  //handles basic fields
+    currentitem.title = req.body.title
+    currentitem.desc = req.body.description
+    currentitem.price = req.body.price
+    currentitem.category = req.body.category
+    currentitem.condition = req.body.condition
+    currentitem.platform = req.body.platform
+  // handles image upload
+    if(req.file) { currentitem.images = {data: req.file.buffer, contentType: req.file.mimetype}}
+    await currentitem.save()
+    res.redirect('/items')
     await currentitem.updateOne(req.body)
     res.redirect("/items")
   } else {
@@ -52,4 +74,15 @@ exports.items_show_get = async (req, res) => {
   res.render("items/show.ejs", {
     item,
   })
+}
+
+//delete item
+exports.item_delete_delete = async (req, res) => {
+  const item = await Item.findById(req.params.itemId)
+  if (item.owner.equals(req.session.user._id)) {
+    await item.deleteOne();
+    res.redirect('/items')
+  } else {
+    res.send("permission denied")
+  }
 }
