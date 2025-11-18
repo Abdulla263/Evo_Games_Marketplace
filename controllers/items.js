@@ -1,4 +1,5 @@
 const Item = require("../models/items")
+const Review =require ("../models/reviews")
 
 // Show items
 exports.items_index_get = async (req, res) => {
@@ -71,8 +72,19 @@ exports.items_create_post = async (req, res) => {
 // Show single item
 exports.items_show_get = async (req, res) => {
   const item = await Item.findById(req.params.itemId).populate("owner")
+  let userHasReviewed = false;
+  if (req.session.user) {
+    const userReview = await Review.findOne({ 
+      item: req.params.itemId, 
+      user: req.session.user._id 
+    })
+
+    userHasReviewed = !!userReview
+  }
+
   res.render("items/show.ejs", {
     item,
+    userHasReviewed
   })
 }
 
