@@ -248,7 +248,7 @@ input[type="file"]::-webkit-file-upload-button {
   border-radius: 5px;
   font-weight: bold;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: 0.3s ease;
 }
 
 input[type="file"]::-webkit-file-upload-button:hover {
@@ -350,4 +350,5 @@ form small {
     padding: 1.5rem;
     margin: 1rem;
   }
+}
 }

@@ -8,7 +8,7 @@
 
   </head>
   <body>
-    <%- include('../partials/navbar.ejs') %> 
+    <%- include('../partials/navbar.ejs') %>
         <% if (user.pfp && user.pfp.data) { %>
   <img src="data:<%= user.pfp.contentType %>;base64,<%= user.pfp.data.toString('base64') %>"
        alt="Profile Picture"
@@ -19,8 +19,29 @@
        style="width:150px;height:150px;border-radius:50%;">
 <% } %> <br>
 Welcome, <%=user.username%> <br>
-Your Email is <%=user.email%>
-
+Your Email is <%=user.email%> <br>
 <a href="/users/Profile/Edit">Edit Profile</a>
-</body>
+<h2>Your Listings</h2>
+
+<% if (items.length === 0) { %>
+  <p>You have no listings yet.</p>
+<% } else { %>
+  <% items.forEach(item => { %>
+    <div class="listing">
+      <h3><%= item.title %></h3>
+
+      <% if (item.images && item.images.data) { %>
+        <img
+          src="data:<%= item.images.contentType %>;base64,<%= item.images.data.toString('base64') %>"
+          style="height: 200px"
+        />
+      <% } %>
+
+      <p><%= item.description %></p>
+    </div>
+  <% }) %>
+<% } %>
+
+
+
 

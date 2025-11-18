@@ -1,4 +1,4 @@
-<!-- creating an edit page for every listing -->
+textarea<!-- creating an edit page for every listing -->
 <%- include('../partials/navbar') %>
 <link rel="stylesheet" href="/css/styles.css" />
 <h1>Edit a listing</h1>
@@ -12,7 +12,7 @@
         required />
 
     <label for="description">Description:</label>
-    <textarea name="description" id="description"><%= item.description %></textarea>
+    <textarea name="description" id="description"> <%= item.description %> </textarea>
     <label for="price">Price (BHD):</label>
     <input
         type="number"
