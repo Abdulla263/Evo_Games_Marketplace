@@ -36,10 +36,10 @@
             <span class="badge badge-platform"><%= item.platform %></span>
           </div>
 
-          <% if (item.desc) { %>
+          <% if (item.description) { %>
           <div class="description">
             <h3>Description</h3>
-            <p><%= item.desc %></p>
+            <p><%= item.description %></p>
           </div>
           <% } %> <% if (user && item.owner && !item.owner._id.equals(user._id)) { %>
           <div class="price-review">
