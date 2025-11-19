@@ -8,13 +8,12 @@ const Items = require("../models/items")
 
 // Show profile
 router.get("/profile", isSignedIn, async (req, res) => {
-  const user = await User.findById(req.session.user._id);
+  const user = await User.findById(req.session.user._id)
 
-  
-  const items = await Items.find({ owner: user._id });
 
-  res.render("users/show.ejs", { user, items });
-});
+  const items = await Items.find({ owner: user._id })
+  res.render("users/show.ejs", { user, items })
+})
 
 // Edit profile
 router.get("/profile/edit", isSignedIn, async (req, res) => {
