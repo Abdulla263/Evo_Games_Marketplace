@@ -30,7 +30,7 @@ const itemSchema = new mongoose.Schema({
   platform: {
     type: String,
     required: true,
-    enum: ["Playstation", "Xbox", "Nintendo"],
+    enum: ["Playstation", "Xbox", "Nintendo", "Other"],
   },
   postTime: {
     type: Date,
