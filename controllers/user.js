@@ -1,5 +1,6 @@
 const User = require('../models/user');
 const Review = require("../models/reviews")
+const Item = require("../models/items");
 // Update user profile
 exports.user_update_put = async (req, res) => {
   const currentUser = await User.findById(req.session.user._id)
@@ -36,24 +37,26 @@ exports.upload_pfp = async (req, res) => {
   res.redirect("/users/profile");
 };
 
+
 exports.user_profile_get = async (req, res) => {
   const user = await User.findById(req.session.user._id);
+
   const userItems = await Item.find({ owner: req.session.user._id });
-  
-  const itemsWithStats = [];
-  
-  for (const currentItem of userItems) {
-    const itemReviews = await Review.find({ item: currentItem._id });
-    
-    itemsWithStats.push({
-      item: currentItem,
-      stats: {
-        totalReviews: itemReviews.length,
-        fairVotes: itemReviews.filter(review => review.voteType === 'fair').length,
-        highVotes: itemReviews.filter(review => review.voteType === 'high').length
-      }
-    });
-  }
-  
+
+  const itemsWithStats = await Promise.all(
+    userItems.map(async (item) => {
+      const reviews = await Review.find({ item: item._id });
+
+      return {
+        item: item,
+        stats: {
+          totalReviews: reviews.length,
+          fairVotes: reviews.filter(r => r.voteType === 'fair').length,
+          highVotes: reviews.filter(r => r.voteType === 'high').length
+        }
+      };
+    })
+  );
+
   res.render("users/show.ejs", { user, itemsWithStats });
-}
+};

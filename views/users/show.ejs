@@ -4,44 +4,85 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/styles.css" />
-
-
+    <title><%= user.username %>'s Profile</title>
   </head>
   <body>
     <%- include('../partials/navbar.ejs') %>
+
+    <div class="container">
+      <div class="profile-header">
         <% if (user.pfp && user.pfp.data) { %>
-  <img src="data:<%= user.pfp.contentType %>;base64,<%= user.pfp.data.toString('base64') %>"
-       alt="Profile Picture"
-       style="width:150px;height:150px;border-radius:50%;">
-<% } else { %>
-  <img src="/uploads/default.jpg"
-       alt="Profile Picture"
-       style="width:150px;height:150px;border-radius:50%;">
-<% } %> <br>
-Welcome, <%=user.username%> <br>
-Your Email is <%=user.email%> <br>
-<a href="/users/Profile/Edit">Edit Profile</a>
-<h2>Your Listings</h2>
-
-<% if (items.length === 0) { %>
-  <p>You have no listings yet.</p>
-<% } else { %>
-  <% items.forEach(item => { %>
-    <div class="listing">
-      <h3><%= item.title %></h3>
-
-      <% if (item.images && item.images.data) { %>
         <img
-          src="data:<%= item.images.contentType %>;base64,<%= item.images.data.toString('base64') %>"
-          style="height: 200px"
+          src="data:<%= user.pfp.contentType %>;base64,<%= user.pfp.data.toString('base64') %>"
+          alt="Profile Picture"
+          class="profile-picture"
         />
-      <% } %>
+        <% } else { %>
+        <img
+          src="/uploads/default.jpg"
+          alt="Profile Picture"
+          class="profile-picture"
+        />
+        <% } %>
 
-      <p><%= item.description %></p>
+        <div class="profile-info">
+          <h1>Welcome, <%= user.username %></h1>
+          <p>Email: <%= user.email %></p>
+          <a href="/users/profile/edit" class="btn btn-primary">Edit Profile</a>
+        </div>
+      </div>
+
+      <div class="user-items-section">
+        <h2> Your Listed Items & Reviews</h2>
+
+        <% if (itemsWithStats.length === 0) { %>
+        <p style="color: #ccc; text-align: center; padding: 2rem;">
+          You haven't listed any items yet.
+          <a href="/items/new" style="color: #00d4ff;">List your first item!</a>
+        </p>
+        <% } else { %>
+        <div class="items-grid">
+          <% itemsWithStats.forEach(itemData => { %>
+          <div class="item-card-profile">
+            <a href="/items/<%= itemData.item._id %>">
+              <% if (itemData.item.images && itemData.item.images.data) { %>
+              <img
+                src="data:<%= itemData.item.images.contentType %>;base64,<%= itemData.item.images.data.toString('base64') %>"
+                alt="<%= itemData.item.title %>"
+                class="item-image"
+              />
+              <% } else { %>
+              <div class="item-image">🎮</div>
+              <% } %>
+
+              <div class="item-info">
+                <h3 class="item-title"><%= itemData.item.title %></h3>
+                <p class="item-price">BHD <%= itemData.item.price %></p>
+              </div>
+            </a>
+
+            <div class="item-review-stats">
+              <h4>💰 Price Reviews</h4>
+              <div class="stats-row">
+                <div class="stat-mini">
+                  <span class="stat-num"><%= itemData.stats.totalReviews %></span>
+                  <span class="stat-label">Total</span>
+                </div>
+                <div class="stat-mini fair">
+                  <span class="stat-num"><%= itemData.stats.fairVotes %></span>
+                  <span class="stat-label">👍 Fair</span>
+                </div>
+                <div class="stat-mini high">
+                  <span class="stat-num"><%= itemData.stats.highVotes %></span>
+                  <span class="stat-label">📈 High</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% }) %>
+        </div>
+        <% } %>
+      </div>
     </div>
-  <% }) %>
-<% } %>
-
-
-
-
+  </body>
+</html>
