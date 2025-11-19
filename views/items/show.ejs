@@ -41,7 +41,8 @@
             <h3>Description</h3>
             <p><%= item.description %></p>
           </div>
-          <% } %> <% if (user && item.owner && !item.owner._id.equals(user._id)) { %>
+          <% } %> <% if (user && item.owner && !item.owner._id.equals(user._id))
+          { %>
           <div class="price-review">
             <h3>💰 Help others - Vote on this price!</h3>
             <p style="color: #ccc; margin-bottom: 1rem; font-size: 0.9rem">
@@ -116,7 +117,7 @@
             <h3>💰 Help others - Vote on this price!</h3>
             <div class="review-form">
               <p style="color: #ccc">
-
+                <a
                   href="/auth/sign-in"
                   style="color: #00d4ff; text-decoration: underline"
                   >Sign in</a
@@ -130,10 +131,14 @@
           <div class="seller-info">
             <h3>Seller Information</h3>
             <% if (user) { %>
-            <p>Username: <%= item.owner ? item.owner.username : 'Unknown User' %></p>
+            <p>
+              Username: <%= item.owner ? item.owner.username : 'Unknown User' %>
+            </p>
             <p>Email: <%= item.owner ? item.owner.email : 'Not available' %></p>
             <% } else { %>
-            <p>Username: <%= item.owner ? item.owner.username : 'Unknown User' %></p>
+            <p>
+              Username: <%= item.owner ? item.owner.username : 'Unknown User' %>
+            </p>
             <p
               style="
                 color: #f39c12;
@@ -145,13 +150,15 @@
             >
               🔒 <strong>Sign in to view contact details</strong><br />
 
-                <a href="/auth/sign-in"
+              <a
+                href="/auth/sign-in"
                 style="color: #0066cc; text-decoration: underline"
                 >Sign In</a
               >
               or
 
-                <a href="/auth/sign-up"
+              <a
+                href="/auth/sign-up"
                 style="color: #0066cc; text-decoration: underline"
                 >Sign Up</a
               >
