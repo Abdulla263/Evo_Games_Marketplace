@@ -8,10 +8,8 @@
   </head>
   <body>
     <%- include('../partials/navbar.ejs') %>
-
     <div class="container">
       <h1>🎮 <%= category %></h1>
-
       <% if (items.length === 0) { %>
       <div class="no-items">
         <p>No <%= category.toLowerCase() %> items listed yet.</p>
@@ -30,12 +28,12 @@
           <% } else { %>
           <div class="item-image">🎮</div>
           <% } %>
-
           <div class="item-info">
             <h3 class="item-title"><%= item.title %></h3>
             <p class="item-price">BHD <%= item.price %></p>
-            <p class="item-details">Seller: <%= item.owner.username %></p>
-
+            <p class="item-details">
+              Seller: <%= item.owner ? item.owner.username : 'Unknown User' %>
+            </p>
             <div>
               <span class="badge badge-category"><%= item.category %></span>
               <span class="badge badge-condition"><%= item.condition %></span>
