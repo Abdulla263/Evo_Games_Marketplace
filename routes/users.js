@@ -24,7 +24,4 @@ router.get("/profile/edit", isSignedIn, async (req, res) => {
 // Update profile
 router.put("/:id", isSignedIn, upload.single("pfp"), userCtrl.user_update_put)
 
-
-
-
 module.exports = router
